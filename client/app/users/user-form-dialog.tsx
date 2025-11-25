@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import type { User } from "@/lib/types"
+import type {User, UserRole} from "@/lib/types"
 import { fakeDelay } from "@/lib/utils-async"
 
 interface UserFormDialogProps {
@@ -20,9 +20,8 @@ interface UserFormDialogProps {
 export function UserFormDialog({ isOpen, onClose, onSubmit, initialData }: UserFormDialogProps) {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     password: "",
-    role: "user" as const,
+    role: "user" as UserRole,
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
@@ -31,14 +30,12 @@ export function UserFormDialog({ isOpen, onClose, onSubmit, initialData }: UserF
     if (initialData) {
       setFormData({
         name: initialData.name,
-        email: initialData.email,
-        password: "", // Don't show password
-        role: initialData.role,
+        password: "",
+        role: "user" as UserRole,
       })
     } else {
       setFormData({
         name: "",
-        email: "",
         password: "",
         role: "user",
       })
@@ -50,7 +47,7 @@ export function UserFormDialog({ isOpen, onClose, onSubmit, initialData }: UserF
     e.preventDefault()
     setError("")
 
-    if (!formData.name || !formData.email || (!initialData && !formData.password)) {
+    if (!formData.name || (!initialData && !formData.password)) {
       setError("All fields are required")
       return
     }
@@ -63,7 +60,6 @@ export function UserFormDialog({ isOpen, onClose, onSubmit, initialData }: UserF
         onSubmit({
           ...initialData,
           name: formData.name,
-          email: formData.email,
           role: formData.role,
           ...(formData.password && { password: formData.password }),
         })
@@ -95,16 +91,6 @@ export function UserFormDialog({ isOpen, onClose, onSubmit, initialData }: UserF
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Email</label>
-            <Input
-              type="email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              placeholder="john@example.com"
-              disabled={isLoading}
-            />
-          </div>
 
           {!initialData && (
             <div>

@@ -9,12 +9,12 @@ import { fakeDelay } from "@/lib/utils-async"
 
 interface OrderStatusDialogProps {
   isOpen: boolean
-  onClose: () => void
+  onCloseAction: () => void
   order: Order
   onStatusChange: (orderId: number, status: Order["status"]) => void
 }
 
-export function OrderStatusDialog({ isOpen, onClose, order, onStatusChange }: OrderStatusDialogProps) {
+export function OrderStatusDialog({ isOpen, onCloseAction, order, onStatusChange }: OrderStatusDialogProps) {
   const [newStatus, setNewStatus] = useState<Order["status"]>(order.status)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -22,7 +22,7 @@ export function OrderStatusDialog({ isOpen, onClose, order, onStatusChange }: Or
 
   const handleSubmit = async () => {
     if (newStatus === order.status) {
-      onClose()
+      onCloseAction()
       return
     }
 
@@ -32,7 +32,7 @@ export function OrderStatusDialog({ isOpen, onClose, order, onStatusChange }: Or
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={onCloseAction}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Update Order Status</DialogTitle>
@@ -64,7 +64,7 @@ export function OrderStatusDialog({ isOpen, onClose, order, onStatusChange }: Or
         </div>
 
         <DialogFooter>
-          <Button type="button" variant="outline" onClick={onClose} disabled={isLoading}>
+          <Button type="button" variant="outline" onClick={onCloseAction} disabled={isLoading}>
             Cancel
           </Button>
           <Button type="submit" disabled={isLoading} onClick={handleSubmit}>

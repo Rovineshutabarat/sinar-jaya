@@ -26,10 +26,6 @@ export function UserDetailDialog({ isOpen, onClose, user }: UserDetailDialogProp
                 <p className="font-medium">{user.name}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Email</p>
-                <p className="font-medium">{user.email}</p>
-              </div>
-              <div>
                 <p className="text-sm text-muted-foreground">Role</p>
                 <p className="font-medium capitalize">{user.role}</p>
               </div>

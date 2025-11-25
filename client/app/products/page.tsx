@@ -124,7 +124,7 @@ export default function ProductsPage() {
 
       <ProductFormDialog
         isOpen={isFormOpen}
-        onClose={() => {
+        onCloseAction={() => {
           setIsFormOpen(false)
           setEditingProduct(null)
         }}

@@ -6,22 +6,20 @@ import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import type { Product } from "@/lib/types"
 import { fakeDelay } from "@/lib/utils-async"
 
 interface ProductFormDialogProps {
   isOpen: boolean
-  onClose: () => void
+  onCloseAction: () => void
   onSubmit: (product: any) => void
   initialData?: Product | null
 }
 
-export function ProductFormDialog({ isOpen, onClose, onSubmit, initialData }: ProductFormDialogProps) {
+export function ProductFormDialog({ isOpen, onCloseAction, onSubmit, initialData }: ProductFormDialogProps) {
   const [formData, setFormData] = useState({
     name: "",
-    description: "",
     price: 0,
     category: "Electronics",
     stock: 0,
@@ -33,7 +31,6 @@ export function ProductFormDialog({ isOpen, onClose, onSubmit, initialData }: Pr
     if (initialData) {
       setFormData({
         name: initialData.name,
-        description: initialData.description,
         price: initialData.price,
         category: initialData.category,
         stock: initialData.stock,
@@ -41,7 +38,6 @@ export function ProductFormDialog({ isOpen, onClose, onSubmit, initialData }: Pr
     } else {
       setFormData({
         name: "",
-        description: "",
         price: 0,
         category: "Electronics",
         stock: 0,
@@ -77,7 +73,7 @@ export function ProductFormDialog({ isOpen, onClose, onSubmit, initialData }: Pr
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={onCloseAction}>
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle>{initialData ? "Edit Product" : "Add New Product"}</DialogTitle>
@@ -96,16 +92,6 @@ export function ProductFormDialog({ isOpen, onClose, onSubmit, initialData }: Pr
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Description</label>
-            <Textarea
-              value={formData.description}
-              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              placeholder="Product description"
-              disabled={isLoading}
-              rows={3}
-            />
-          </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -145,7 +131,7 @@ export function ProductFormDialog({ isOpen, onClose, onSubmit, initialData }: Pr
           </div>
 
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={onClose} disabled={isLoading}>
+            <Button type="button" variant="outline" onClick={onCloseAction} disabled={isLoading}>
               Cancel
             </Button>
             <Button type="submit" disabled={isLoading}>

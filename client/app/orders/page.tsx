@@ -119,7 +119,7 @@ export default function OrdersPage() {
           <OrderDetailDialog isOpen={showDetails} onCloseAction={() => setShowDetails(false)} order={selectedOrder} />
           <OrderStatusDialog
             isOpen={showStatusDialog}
-            onClose={() => setShowStatusDialog(false)}
+            onCloseAction={() => setShowStatusDialog(false)}
             order={selectedOrder}
             onStatusChange={handleUpdateStatus}
           />
