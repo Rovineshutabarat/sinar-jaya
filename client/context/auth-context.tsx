@@ -20,7 +20,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = async (username: string, password: string) => {
     setIsLoading(true);
 
-    const res = await fetch("https://fe68fe35d901.ngrok-free.app/auth/login", {
+    const res = await fetch("https://sinar-jaya-1.onrender.com/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -42,7 +42,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const register = async (username: string, password: string, name: string) => {
     setIsLoading(true);
 
-    const res = await fetch("https://fe68fe35d901.ngrok-free.app/auth/register", {
+    const res = await fetch("https://sinar-jaya-1.onrender.com/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password, name , role : "user" }),

@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: "http://192.168.1.78:3002",
+    origin: "https://www.sinar-jaya.my.id",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }));

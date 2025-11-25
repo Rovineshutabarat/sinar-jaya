@@ -1,8 +1,9 @@
 import mysql from "mysql2/promise";
 
-export const db = await mysql.createPool({
-    host: "localhost",
+export const db = mysql.createPool({
+    host: "hopper.proxy.rlwy.net",
+    port: 52619,
     user: "root",
-    password: "",
-    database: "sinar_jaya"
+    password: "EpHmEEPXRrxQBLMoPXvDuqNSlqBkDrQi",
+    database: "railway",
 });
