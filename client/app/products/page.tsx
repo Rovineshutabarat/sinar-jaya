@@ -99,7 +99,7 @@ export default function ProductsPage() {
                 {
                   label: "Stock",
                   key: "stock",
-                  render: (stock) => <span className={stock < 50 ? "text-destructive font-medium" : ""}>{stock}</span>,
+                  render: (stock) => <span className={Number(stock) < 50 ? "text-destructive font-medium" : ""}>{stock.toString()}</span>,
                 },
                 { label: "Added", key: "createdAt", render: (date) => (date as Date).toLocaleDateString() },
               ]}
@@ -133,7 +133,7 @@ export default function ProductsPage() {
       />
 
       {selectedProduct && (
-        <ProductDetailDialog isOpen={showDetails} onClose={() => setShowDetails(false)} product={selectedProduct} />
+        <ProductDetailDialog isOpen={showDetails} onCloseAction={() => setShowDetails(false)} product={selectedProduct} />
       )}
     </div>
   )

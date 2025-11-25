@@ -7,15 +7,15 @@ import { dummyUsers, dummyProducts } from "@/lib/fake-data"
 
 interface OrderDetailDialogProps {
   isOpen: boolean
-  onClose: () => void
+  onCloseAction: () => void
   order: Order
 }
 
-export function OrderDetailDialog({ isOpen, onClose, order }: OrderDetailDialogProps) {
+export function OrderDetailDialog({ isOpen, onCloseAction, order }: OrderDetailDialogProps) {
   const customer = dummyUsers.find((u) => u.id === order.userId)
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={onCloseAction}>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
           <DialogTitle>Order Details - #{order.id}</DialogTitle>
@@ -31,8 +31,8 @@ export function OrderDetailDialog({ isOpen, onClose, order }: OrderDetailDialogP
                 <p className="font-medium">{customer?.name}</p>
               </div>
               <div>
-                <p className="text-muted-foreground">Email</p>
-                <p className="font-medium">{customer?.email}</p>
+                <p className="text-muted-foreground">Username</p>
+                <p className="font-medium">{customer?.username}</p>
               </div>
             </div>
           </Card>
@@ -67,10 +67,6 @@ export function OrderDetailDialog({ isOpen, onClose, order }: OrderDetailDialogP
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Order Date</span>
                 <span className="font-medium">{order.createdAt.toLocaleDateString()}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Last Updated</span>
-                <span className="font-medium">{order.updatedAt.toLocaleDateString()}</span>
               </div>
               <div className="border-t pt-2 flex justify-between font-semibold">
                 <span>Total</span>

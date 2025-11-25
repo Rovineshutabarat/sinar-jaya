@@ -29,6 +29,22 @@ export interface Product {
   createdAt: Date
 }
 
+
+export type TicketStatus = "open" | "in-progress" | "resolved";
+export type TicketPriority = "low" | "medium" | "high";
+
+export type Ticket = {
+  id: number;
+  ticketNumber: string;
+  userId: number;
+  subject: string;
+  description: string;
+  status: TicketStatus;
+  priority: TicketPriority;
+  createdAt: Date;
+  updatedAt?: Date;
+};
+
 export interface Order {
   id: number
   orderNumber: string

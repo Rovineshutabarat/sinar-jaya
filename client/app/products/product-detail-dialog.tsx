@@ -6,13 +6,13 @@ import { Card } from "@/components/ui/card"
 
 interface ProductDetailDialogProps {
   isOpen: boolean
-  onClose: () => void
+  onCloseAction: () => void
   product: Product
 }
 
-export function ProductDetailDialog({ isOpen, onClose, product }: ProductDetailDialogProps) {
+export function ProductDetailDialog({ isOpen, onCloseAction, product }: ProductDetailDialogProps) {
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={onCloseAction}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Product Details</DialogTitle>
@@ -24,10 +24,6 @@ export function ProductDetailDialog({ isOpen, onClose, product }: ProductDetailD
               <div>
                 <p className="text-sm text-muted-foreground">Product Name</p>
                 <p className="font-medium">{product.name}</p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Description</p>
-                <p className="font-medium">{product.description}</p>
               </div>
               <div className="grid grid-cols-3 gap-4">
                 <div>

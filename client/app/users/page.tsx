@@ -71,8 +71,8 @@ export default function UsersPage() {
         <DataTable
           columns={[
             { label: "Name", key: "name" },
-            { label: "Email", key: "email" },
-            { label: "Role", key: "role", render: (role) => <span className="capitalize">{role}</span> },
+            { label: "Username", key: "username" },
+            { label: "Role", key: "role", render: (role) => <span className="capitalize">{role.toString()}</span> },
             { label: "Joined", key: "createdAt", render: (date) => (date as Date).toLocaleDateString() },
           ]}
           data={users}

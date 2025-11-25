@@ -92,7 +92,7 @@ export default function OrdersPage() {
                     <span
                       className={`px-2 py-1 rounded text-xs font-medium capitalize ${getStatusColor(status as Order["status"])}`}
                     >
-                      {status}
+                      {status.toString()}
                     </span>
                   ),
                 },
@@ -116,7 +116,7 @@ export default function OrdersPage() {
 
       {selectedOrder && (
         <>
-          <OrderDetailDialog isOpen={showDetails} onClose={() => setShowDetails(false)} order={selectedOrder} />
+          <OrderDetailDialog isOpen={showDetails} onCloseAction={() => setShowDetails(false)} order={selectedOrder} />
           <OrderStatusDialog
             isOpen={showStatusDialog}
             onClose={() => setShowStatusDialog(false)}

@@ -11,7 +11,7 @@ export default function SettingsPage() {
   const { user } = useAuth()
   const [accountSettings, setAccountSettings] = useState({
     name: user?.name || "",
-    email: user?.email || "",
+    username: user?.username || "",
     currentPassword: "",
     newPassword: "",
     confirmPassword: "",
@@ -60,11 +60,11 @@ export default function SettingsPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">Email Address</label>
+                <label className="block text-sm font-medium mb-1">Username</label>
                 <Input
-                  type="email"
-                  value={accountSettings.email}
-                  onChange={(e) => setAccountSettings({ ...accountSettings, email: e.target.value })}
+                  type="text"
+                  value={accountSettings.username}
+                  onChange={(e) => setAccountSettings({ ...accountSettings, username: e.target.value })}
                 />
               </div>
 
